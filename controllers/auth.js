@@ -147,14 +147,6 @@ const enviarMensaje = (req, res = express.request) => {
     })
 }
 
-//NOTIFICACIONES
-const notificacion = (req, res = express.request) => {
-    const { imagen, descripcion } = req.body;
-    res.status(200).json({
-        ok: true,
-        notification
-    })
-}
 
 const subirImagen = async (req, res) => {
     const { categoria, descripcion, imagen, userId } = req.body;
@@ -208,4 +200,5 @@ const subirImagen = async (req, res) => {
   };
 
 //EXPORTS
-module.exports = {}
+module.exports = {registro, login, perfil, editarPerfil, mensajes,
+    enviarMensaje, subirImagen, verImagen}
