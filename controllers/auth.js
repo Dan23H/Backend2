@@ -1,6 +1,6 @@
 const express = require('express');
 const Usuario = require('../models/usuario')
-const Imagen = require('../models/image');
+const Imagen = require('../models/imagen');
 const Mascota = require('../models/mascota')
 
 //REGISTRO
