@@ -2,9 +2,22 @@ const { Schema, model } = require('mongoose')
 
 const ImagenScheme = Schema({
 
-    imagen: {
+    titulo: {
         type: String,
         required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    imagen: {
+        data: {
+            type: Buffer,
+            required: true
+        },
+        contentType: {
+            type: String
+        }
     },
     mascota: {
         type: Schema.Types.ObjectId,
