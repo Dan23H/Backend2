@@ -174,22 +174,30 @@ const subirImagen = async (req, res) => {
     }
   };
 
-  const verImagen = async (req, res) => {
-    const imagenId = req.params.id;
+  const verImagenes = async (req, res) => {
+     try {
+      const imagenes = await Imagen.find();
   
-    try {
-      const imagen = await Imagen.findById(imagenId);
-  
-      if (!imagen) {
+      if (!imagenes) {
         return res.status(404).json({
           ok: false,
           error: 'Imagen no encontrada',
         });
       }
-  
+      const imagesData = imagenes.map((imagen) => {
+        return{
+          'id': imagen.id,
+          'descripcion': imagen.descripcion,
+          'titulo': imagen.titulo,
+          'imagen': {
+            'data': imagen.imagen.data.toString("base64"),
+            'contentType': imagen.imagen.contentType
+          }
+        };
+      });
       res.json({
         ok: true,
-        imagen,
+        imagenes: imagesData
       });
     } catch (error) {
       res.status(500).json({
@@ -201,4 +209,4 @@ const subirImagen = async (req, res) => {
 
 //EXPORTS
 module.exports = {registro, login, perfil, editarPerfil, mensajes,
-    enviarMensaje, subirImagen, verImagen}
+    enviarMensaje, subirImagen, verImagenes}
